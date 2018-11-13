@@ -1,5 +1,6 @@
 package com.example.eloah.navigationdrawer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -8,6 +9,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -26,14 +28,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
-    ListView lista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        lista = (ListView) findViewById(R.id.listview_listadealunos);
-        imprimeLista();
 
         dl = (DrawerLayout) findViewById(R.id.activity_main);
         t = new ActionBarDrawerToggle(this, dl, R.string.abrir, R.string.fechar);
@@ -62,6 +61,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (id) {
             case R.id.conta:
                 Toast.makeText(MainActivity.this, "Minha conta", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, ActivityListView.class);
+                startActivity(intent);
                 break;
             case R.id.config:
                 Toast.makeText(MainActivity.this, "Configuração", Toast.LENGTH_SHORT).show();
@@ -73,24 +74,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 return true;
         }
         return false;
-    }
-
-    private void imprimeLista() {
-
-        InterfaceDeServicos services = RetrofitService.getServico();
-        Call<List<Aluno>> call = services.webserviceNotasDeAlunos();
-
-        call.enqueue(new Callback<List<Aluno>>() {
-            @Override
-            public void onResponse(Call<List<Aluno>> call, Response<List<Aluno>> response) {
-                List<Aluno> listaAlunosNotas = response.body();
-                lista.setAdapter(new ListaAdapter(MainActivity.this, listaAlunosNotas));
-            }
-
-            @Override
-            public void onFailure(Call<List<Aluno>> call, Throwable t) {
-                Log.i("debug", t.getMessage());
-            }
-        });
     }
 }

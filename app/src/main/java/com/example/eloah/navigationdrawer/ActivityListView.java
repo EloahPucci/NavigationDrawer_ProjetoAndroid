@@ -6,7 +6,6 @@ import android.util.Log;
 
 import com.example.eloah.navigationdrawer.model.Aluno;
 import com.example.eloah.navigationdrawer.services.InterfaceDeServicos;
-import com.example.eloah.navigationdrawer.ListaAdapter;
 import com.example.eloah.navigationdrawer.services.RetrofitService;
 
 import java.util.List;
