@@ -7,21 +7,8 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ListView;
 import android.widget.Toast;
-
-import com.example.eloah.navigationdrawer.model.Aluno;
-import com.example.eloah.navigationdrawer.services.InterfaceDeServicos;
-import com.example.eloah.navigationdrawer.services.RetrofitService;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -36,6 +23,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         dl = (DrawerLayout) findViewById(R.id.activity_main);
         t = new ActionBarDrawerToggle(this, dl, R.string.abrir, R.string.fechar);
+
+
 
         dl.addDrawerListener(t);
         t.syncState();
